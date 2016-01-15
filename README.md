@@ -1,0 +1,2 @@
+# docker-presto
+Dockerize PrestoDB
