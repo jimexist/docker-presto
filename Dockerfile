@@ -1,5 +1,7 @@
 FROM java:openjdk-8-jdk
 
+MAINTAINER Jiayu Liu <etareduce@gmail.com>
+
 ENV DEBIAN_FRONTEND noninteractive
 
 ADD https://repo1.maven.org/maven2/com/facebook/presto/presto-server/0.132/presto-server-0.132.tar.gz \
