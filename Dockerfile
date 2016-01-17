@@ -11,8 +11,6 @@ RUN mkdir /opt/presto &&\
     tar -zxvf /tmp/presto.tar.gz -C /opt/presto --strip-components=1 &&\
     rm /tmp/presto.tar.gz
 
-ADD ./entrypoint.sh /opt/presto/entrypoint.sh
-
 # copy default set of config
 COPY config/* /opt/presto/etc/
 # adding the config mounting point
