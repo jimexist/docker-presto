@@ -16,7 +16,7 @@ ENV HOME /opt/presto/presto-server-0.147
 WORKDIR $HOME
 
 # copy default set of config
-COPY config/* $HOME/etc/
+COPY config/ $HOME/etc/
 # adding the config mounting point
 VOLUME $HOME/etc/
 # adding the data mounting point

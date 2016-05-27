@@ -12,12 +12,6 @@ services:
       - mongodb
       - postgresql
       - mysql
-    environment:
-      PG_USER: 'presto'
-      PG_PASSWORD: '9bee2c3975024292eff5829526722ac2'
-      PG_DATABASE: 'postgres'
-      MYSQL_USER: 'presto'
-      MYSQL_PASSWORD: 'b9df6227c21f55a5ffc08827d8456d28'
     ports:
       - "8080:8080"
 
