@@ -1,4 +1,4 @@
-FROM java:openjdk-8-jdk
+FROM java:jdk
 
 MAINTAINER Jiayu Liu <etareduce@gmail.com>
 
@@ -7,20 +7,22 @@ ENV DEBIAN_FRONTEND noninteractive
 ADD https://repo1.maven.org/maven2/com/facebook/presto/presto-server/0.147/presto-server-0.147.tar.gz \
     /tmp/presto.tar.gz
 
-RUN mkdir /opt/presto &&\
-    tar -zxvf /tmp/presto.tar.gz -C /opt/presto --strip-components=1 &&\
+RUN mkdir -p /opt/presto &&\
+    tar -zxvf /tmp/presto.tar.gz -C /opt/presto &&\
     rm /tmp/presto.tar.gz
 
+ENV HOME /opt/presto/presto-server-0.147
+
+WORKDIR $HOME
+
 # copy default set of config
-COPY config/* /opt/presto/etc/
+COPY config/* $HOME/etc/
 # adding the config mounting point
-VOLUME /opt/presto/etc/
+VOLUME $HOME/etc/
 # adding the data mounting point
-VOLUME /opt/presto/data/
+VOLUME $HOME/data/
 
 EXPOSE 8080
 
-WORKDIR /opt/presto
-
-ENTRYPOINT ["/opt/presto/bin/launcher", "run"]
+ENTRYPOINT ["/opt/presto/presto-server-0.147/bin/launcher", "run"]
 
