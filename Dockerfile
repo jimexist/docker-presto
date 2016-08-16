@@ -1,14 +1,13 @@
-FROM java:jdk
+FROM java
 
 MAINTAINER Jiayu Liu <etareduce@gmail.com>
 
 ENV DEBIAN_FRONTEND noninteractive
 
-ADD https://repo1.maven.org/maven2/com/facebook/presto/presto-server/0.150/presto-server-0.150.tar.gz \
-    /tmp/presto.tar.gz
-
-RUN mkdir -p /opt/presto &&\
-    tar -zxvf /tmp/presto.tar.gz -C /opt/presto &&\
+RUN wget -O /tmp/presto.tar.gz \
+    https://repo1.maven.org/maven2/com/facebook/presto/presto-server/0.150/presto-server-0.150.tar.gz && \
+    mkdir -p /opt/presto && \
+    tar zxf /tmp/presto.tar.gz -C /opt/presto && \
     rm /tmp/presto.tar.gz
 
 ENV HOME /opt/presto/presto-server-0.150
@@ -24,4 +23,4 @@ VOLUME $HOME/data/
 
 EXPOSE 8080
 
-ENTRYPOINT ["/opt/presto/presto-server-0.150/bin/launcher", "run"]
+ENTRYPOINT ["bin/launcher", "run"]
