@@ -11,6 +11,11 @@ RUN mkdir -p /opt/presto &&\
     tar -zxvf /tmp/presto.tar.gz -C /opt/presto &&\
     rm /tmp/presto.tar.gz
 
+# add hive connect
+RUN touch etc/catalog/hive.properties \
+    echo "connector.name=hive-hadoop2 \
+    hive.metastore.uri=thrift://hive:9083" > etc/catalog/hive.properties
+
 ENV HOME /opt/presto/presto-server-0.150
 
 WORKDIR $HOME
