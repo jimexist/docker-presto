@@ -24,4 +24,4 @@ VOLUME $HOME/data/
 
 EXPOSE 8080
 
-ENTRYPOINT ["/opt/presto/presto-server-0.152/bin/launcher", "run"]
+CMD ["/opt/presto/presto-server-0.152/bin/launcher", "run"]
